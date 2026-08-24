@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Surprise! ❤️</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <canvas id="confetti-canvas"></canvas>
+    <audio id="bg-music" loop></audio>
+
+    <div id="app">
+        <!-- Music Control -->
+        <div id="music-control" class="hidden">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+            </svg>
+        </div>
+
+        <!-- SCREEN 1: INTRO -->
+        <section id="screen-intro" class="screen active">
+            <h1 id="intro-heading" class="handwritten"></h1>
+            <p id="intro-sub"></p>
+            
+            <div class="svg-container">
+                <!-- Cute SVG Gift -->
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="40" y="80" width="120" height="100" rx="10" fill="#E84855" />
+                    <rect x="30" y="60" width="140" height="30" rx="5" fill="#FF8A95" />
+                    <rect x="90" y="60" width="20" height="120" fill="#FFF8F0" />
+                    <path d="M100 60 C80 20 40 40 80 60" fill="none" stroke="#FFF8F0" stroke-width="12" stroke-linecap="round"/>
+                    <path d="M100 60 C120 20 160 40 120 60" fill="none" stroke="#FFF8F0" stroke-width="12" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <p id="intro-question"></p>
+            <div class="button-group">
+                <button id="btn-yes" class="btn-primary"></button>
+                <button id="btn-no" class="btn-secondary"></button>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: LETTER -->
+        <section id="screen-letter" class="screen">
+            <div class="card">
+                <h2 id="letter-heading" class="handwritten"></h2>
+                <div id="letter-text" class="typewriter-text"></div>
+                <div style="margin-top: 32px;">
+                    <button class="btn-next" data-next="screen-memories">Next ✨</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: MEMORIES -->
+        <section id="screen-memories" class="screen">
+            <h2 id="memories-heading" class="handwritten" style="margin-bottom: 24px;"></h2>
+            <div id="memories-container" class="memories-container">
+                <!-- Memories injected by JS -->
+            </div>
+            <button class="btn-next" data-next="screen-award">Continue ➡️</button>
+        </section>
+
+        <!-- SCREEN 4: AWARD -->
+        <section id="screen-award" class="screen">
+            <div class="card" style="text-align: center;">
+                <div class="award-ribbon">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="30" fill="#E84855"/>
+                        <circle cx="50" cy="40" r="24" fill="none" stroke="#FFF8F0" stroke-width="2" stroke-dasharray="4 4"/>
+                        <path d="M35 65 L25 95 L50 80 L75 95 L65 65" fill="#FF8A95" />
+                        <path d="M40 35 L45 45 L55 30" fill="none" stroke="#FFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h2 id="award-title" style="color: var(--primary); font-size: 1.5rem; margin-bottom: 8px;"></h2>
+                <p id="award-subtitle" style="font-size: 1rem; color: var(--text-main); margin-bottom: 24px;"></p>
+                <p id="award-reason" style="font-family: var(--font-hand); font-size: 1.6rem; color: var(--text-main); white-space: pre-wrap;"></p>
+                
+                <div id="award-signature" class="award-signature"></div>
+            </div>
+            <button class="btn-next" data-next="screen-rakhi">Next 🎁</button>
+        </section>
+
+        <!-- SCREEN 5: RAKHI REVEAL -->
+        <section id="screen-rakhi" class="screen">
+            <div class="rakhi-svg">
+                <svg viewBox="0 0 200 200">
+                    <!-- Thread -->
+                    <path d="M10 100 Q 50 120 100 100 T 190 100" fill="none" stroke="#E84855" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M10 105 Q 50 125 100 105 T 190 105" fill="none" stroke="#FFD1D6" stroke-width="2" stroke-linecap="round"/>
+                    
+                    <!-- Center piece -->
+                    <circle cx="100" cy="100" r="40" fill="#FFF8F0" stroke="#E84855" stroke-width="4"/>
+                    <circle cx="100" cy="100" r="32" fill="#FF8A95"/>
+                    <circle cx="100" cy="100" r="24" fill="#E84855"/>
+                    <circle cx="100" cy="100" r="12" fill="#FFF8F0"/>
+                    
+                    <!-- Decor -->
+                    <circle cx="75" cy="75" r="5" fill="#E84855"/>
+                    <circle cx="125" cy="75" r="5" fill="#E84855"/>
+                    <circle cx="75" cy="125" r="5" fill="#E84855"/>
+                    <circle cx="125" cy="125" r="5" fill="#E84855"/>
+                </svg>
+            </div>
+            
+            <p id="rakhi-text-1" style="font-size: 1.2rem; margin-bottom: 16px;"></p>
+            <p id="rakhi-text-2" style="font-family: var(--font-hand); font-size: 1.8rem; color: var(--primary); white-space: pre-wrap;"></p>
+            
+            <div style="margin-top: 40px;">
+                <button id="btn-rakhi-next" class="btn-next" data-next="screen-final"></button>
+            </div>
+        </section>
+
+        <!-- SCREEN 6: FINAL -->
+        <section id="screen-final" class="screen">
+            <h2 id="final-heading" style="margin-bottom: 8px;"></h2>
+            <p id="final-sub" style="font-family: var(--font-hand); font-size: 2.2rem; margin-bottom: 40px; color: #FFF8F0;"></p>
+            
+            <p id="final-text" style="white-space: pre-wrap; font-size: 1.2rem; line-height: 1.8; margin-bottom: 48px; font-weight: 500;"></p>
+            
+            <div id="final-signature" class="handwritten" style="font-size: 2rem;"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
