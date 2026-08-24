@@ -1,43 +1,43 @@
 # Raksha Bandhan Surprise Website 🎁
 
-A cute, mobile-first, interactive website designed to be a digital Raksha Bandhan gift for your sister. It features a playful YES/NO interaction, a digital letter, memory cards, a certificate, and a final surprise.
+This is a **pure static HTML/CSS/JavaScript website**. It is designed to be a digital Raksha Bandhan gift for your sister. It features a playful YES/NO interaction, a digital letter, memory cards, a certificate, and a final surprise.
 
 ## 🛠 How to Personalize
 
 Everything you need to change is located at the very top of `script.js`.
 
-1. Open `script.js` in any text editor.
+1. Open `script.js`.
 2. Find the `CONFIG` object at the top.
-3. Change the names, messages, and captions.
+3. Change the sister's name, messages, and captions.
 4. Save the file.
 
-### Adding Photos
+### HOW TO ADD PHOTOS:
 
-1. Create a folder named `assets` right next to your HTML file.
-2. Place your photos in the `assets/` folder.
-3. In `script.js` under the `CONFIG` object, update the `image` path for each memory to match your files (e.g., `assets/my-photo.jpg`).
-4. (Optional) If you don't add photos, a cute placeholder will automatically be used instead.
+Photos are completely optional. The website works perfectly and will show a beautiful placeholder if no photos are provided.
 
-### Adding Music
+To add photos later:
+1. Place photos into the `assets/` folder (e.g., `assets/memory1.jpg`, `assets/memory2.jpg`).
+2. Update the filenames in the `CONFIG` object in `script.js` to match exactly.
 
-1. Add an MP3 file to the `assets/` folder and name it EXACTLY `music.mp3` (`assets/music.mp3`).
-2. The website will automatically detect the music file and display a small music player button at the top right corner.
+### HOW TO ADD MUSIC:
 
-## 🚀 How to Deploy (For Free)
+Music is also optional. 
+1. Place your audio file into the `assets/` folder and name it EXACTLY `music.mp3` (so the path is `assets/music.mp3`).
+2. The website will automatically detect the asset and enable a music player button. If the file is missing, the button safely hides itself without causing errors.
 
-The simplest way to host this for free and share the link with your sister is using **GitHub Pages**.
+## 🚀 How to Deploy to Vercel
 
-1. Create a free account on [GitHub](https://github.com/).
-2. Create a new repository (e.g., `rakhi-surprise`).
-3. Upload all the files from this folder (`index.html`, `style.css`, `script.js`, and the `assets/` folder) to your new repository.
-4. In your GitHub repository, go to **Settings** > **Pages** (on the left sidebar).
-5. Under "Build and deployment", set the **Source** to `Deploy from a branch`.
-6. Under **Branch**, select `main` (or `master`) and click **Save**.
-7. Wait about 1-2 minutes. GitHub will provide you with a live URL (e.g., `https://yourusername.github.io/rakhi-surprise/`).
-8. Send that link to your sister on WhatsApp/Instagram! 🎉
+Because this is a pure static website with no build step, it is natively compatible with Vercel right out of the box.
+
+1. Upload this entire folder to a new GitHub repository. Make sure `index.html` is at the very root of your GitHub repository.
+2. Go to [Vercel](https://vercel.com/) and click **Add New Project**.
+3. Import your new GitHub repository.
+4. **Important:** Leave all configuration settings blank/default. Vercel automatically detects static HTML websites. Do not set a Build Command or an Output Directory.
+5. Click **Deploy**.
+6. Share the generated Vercel URL with your sister! 🎉
 
 ## 📱 Tech Stack
 - HTML5
 - CSS3 (Mobile-first, fully responsive)
-- Vanilla JavaScript (No heavy frameworks)
-- Zero external dependencies! (Works perfectly offline and loads instantly)
+- Vanilla JavaScript
+- No backend, no database, no npm build steps.
