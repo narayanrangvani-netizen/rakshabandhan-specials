@@ -1,350 +1,268 @@
-:root {
-    --bg: #FFF8F0;
-    --text-main: #8B1E41;
-    --text-light: #B43A5F;
-    --primary: #E84855;
-    --primary-light: #FF8A95;
-    --primary-dark: #C62E3A;
-    --card-bg: #FFFFFF;
-    --shadow: 0 8px 24px rgba(139, 30, 65, 0.08);
-    --shadow-hover: 0 12px 32px rgba(139, 30, 65, 0.12);
-    --gingham: repeating-linear-gradient(
-        45deg,
-        rgba(232, 72, 85, 0.03),
-        rgba(232, 72, 85, 0.03) 10px,
-        rgba(232, 72, 85, 0.08) 10px,
-        rgba(232, 72, 85, 0.08) 20px
-    );
-    --font-main: 'Quicksand', sans-serif;
-    --font-hand: 'Caveat', cursive;
-}
+// ==================================================
+// 1. CONFIGURATION SECTION
+// ==================================================
+// Edit all the text, names, and images here!
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
+const CONFIG = {
+    // Names
+    sisterName: "Sister",
+    brotherName: "Your Brother",
 
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg);
-    color: var(--text-main);
-    overflow-x: hidden;
-    line-height: 1.6;
-    background-image: radial-gradient(circle at center, rgba(232,72,85,0.03) 0%, transparent 100%);
-}
+    // Screen 1: Intro
+    introHeading: "Hey Sister...",
+    introSub: "I made something for you.",
+    introQuestion: "Do you wanna see it?",
+    yesButtonText: "YES ❤️",
+    noButtonText: "NO 😏",
+    noButtonResponses: [
+        "Nope 😭",
+        "Are you sure?",
+        "Try again 😂",
+        "Nice try 😭",
+        "You can't escape!"
+    ],
 
-#app {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    background: var(--bg);
-    box-shadow: 0 0 40px rgba(0,0,0,0.05);
-}
+    // Screen 2: Main Letter
+    letterHeading: "Happy Raksha Bandhan ❤️",
+    letterText: `Life would be a little more boring without you.
+We may fight, annoy each other and tease each other,
+but you're genuinely one of the people I will always be grateful for.
 
-/* Audio Player */
-#music-control {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 44px;
-    height: 44px;
-    background: var(--card-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    z-index: 100;
-    color: var(--primary);
-    transition: transform 0.3s ease;
-}
-#music-control:active {
-    transform: scale(0.9);
-}
-#music-control.hidden {
-    display: none;
-}
-#music-control svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-}
-.music-playing {
-    animation: pulse 2s infinite;
-}
+This little website is just a small reminder
+that you're special to me.
 
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(232, 72, 85, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(232, 72, 85, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(232, 72, 85, 0); }
-}
+Happy Raksha Bandhan!`,
 
-/* Screens */
-.screen {
-    min-height: 100vh;
-    padding: 40px 24px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.screen.active {
-    display: flex;
-    opacity: 1;
-    animation: slideUpFade 0.8s ease forwards;
-}
+    // Screen 3: Memories
+    memoriesHeading: "Our Little Memories 📸",
+    memories: [
+        {
+            image: "assets/memory1.jpg",
+            caption: "One of those random memories ❤️"
+        },
+        {
+            image: "assets/memory2.jpg",
+            caption: "Always causing chaos 😂"
+        },
+        {
+            image: "assets/memory3.jpg",
+            caption: "Best memories are the unplanned ones."
+        }
+    ],
 
-@keyframes slideUpFade {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
+    // Screen 4: Award
+    awardTitle: "OFFICIAL SISTER AWARD",
+    awardSubtitle: "Awarded to",
+    awardReason: "For being an amazing sister,\nprofessional annoyance,\nand a permanent part of my life.",
 
-/* Typography */
-h1, h2, h3 {
-    color: var(--text-main);
-    font-weight: 700;
-}
-.handwritten {
-    font-family: var(--font-hand);
-    font-size: 2.8rem;
-    line-height: 1.2;
-    color: var(--primary);
-    margin-bottom: 16px;
-    transform: rotate(-2deg);
-}
-p {
-    font-size: 1.1rem;
-    margin-bottom: 24px;
-    font-weight: 600;
-    color: var(--text-light);
-}
+    // Screen 5: Rakhi Reveal
+    rakhiText1: "A Rakhi isn't just a thread...",
+    rakhiText2: "It's a reminder that no matter how far life takes us,\nI'll always have your back.",
+    rakhiButtonText: "One More Thing →",
 
-/* Buttons */
-.button-group {
-    display: flex;
-    gap: 16px;
-    margin-top: 32px;
-    position: relative;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    min-height: 120px;
-}
+    // Screen 6: Final
+    finalHeading: "One last thing...",
+    finalSub: "Thank you for being my sister ❤️",
+    finalText: "No matter how much we grow up,\nI'll always be your brother first.\n\nHappy Raksha Bandhan ❤️",
+    finalSignature: "Made with ❤️ by your brother"
+};
 
-button {
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 14px 32px;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    outline: none;
-}
+// ==================================================
+// 2. APP LOGIC (Do not edit below unless you know JS)
+// ==================================================
 
-.btn-primary, .btn-next {
-    background: var(--primary);
-    color: white;
-    box-shadow: 0 6px 16px rgba(232, 72, 85, 0.3);
-}
-.btn-primary:active, .btn-next:active {
-    transform: scale(0.95);
-    background: var(--primary-dark);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Inject Config Data
+    document.getElementById('intro-heading').innerText = CONFIG.introHeading.replace("Sister", CONFIG.sisterName);
+    document.getElementById('intro-sub').innerText = CONFIG.introSub;
+    document.getElementById('intro-question').innerText = CONFIG.introQuestion;
+    document.getElementById('btn-yes').innerText = CONFIG.yesButtonText;
+    document.getElementById('btn-no').innerText = CONFIG.noButtonText;
 
-.btn-secondary {
-    background: var(--card-bg);
-    color: var(--text-main);
-    box-shadow: var(--shadow);
-    position: relative;
-}
+    document.getElementById('letter-heading').innerText = CONFIG.letterHeading;
+    document.getElementById('letter-text').innerText = CONFIG.letterText;
 
-/* Intro Screen */
-#screen-intro .svg-container {
-    margin: 40px 0;
-    width: 180px;
-    height: 180px;
-    animation: float 4s ease-in-out infinite;
-}
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
-}
+    document.getElementById('memories-heading').innerText = CONFIG.memoriesHeading;
+    
+    document.getElementById('award-title').innerText = CONFIG.awardTitle;
+    document.getElementById('award-subtitle').innerText = `${CONFIG.awardSubtitle} ${CONFIG.sisterName}`;
+    document.getElementById('award-reason').innerText = CONFIG.awardReason;
+    document.getElementById('award-signature').innerText = CONFIG.brotherName;
 
-/* Card Styling (Letter & Award) */
-.card {
-    background: var(--card-bg);
-    border-radius: 24px;
-    padding: 40px 24px;
-    width: 100%;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 32px;
-}
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 12px;
-    background: var(--gingham);
-}
-.card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0; height: 12px;
-    background: var(--gingham);
-}
+    document.getElementById('rakhi-text-1').innerText = CONFIG.rakhiText1;
+    document.getElementById('rakhi-text-2').innerText = CONFIG.rakhiText2;
+    document.getElementById('btn-rakhi-next').innerText = CONFIG.rakhiButtonText;
 
-.typewriter-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text-main);
-    white-space: pre-wrap;
-    text-align: left;
-    margin: 24px 0;
-    font-weight: 600;
-    opacity: 0;
-}
-.typewriter-text.revealed {
-    opacity: 1;
-    transition: opacity 1s ease;
-}
+    document.getElementById('final-heading').innerText = CONFIG.finalHeading;
+    document.getElementById('final-sub').innerText = CONFIG.finalSub;
+    document.getElementById('final-text').innerText = CONFIG.finalText;
+    document.getElementById('final-signature').innerText = CONFIG.finalSignature;
 
-/* Memories Screen */
-.memories-container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    margin-bottom: 32px;
-}
-.memory-card {
-    background: #fff;
-    padding: 16px 16px 24px 16px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    transform: rotate(-2deg);
-    transition: transform 0.3s ease;
-}
-.memory-card:nth-child(even) {
-    transform: rotate(2deg);
-}
-.memory-image-container {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background: var(--gingham);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-.memory-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.memory-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-    color: white;
-    font-family: var(--font-hand);
-    font-size: 2rem;
-    position: absolute;
-    top: 0; left: 0;
-}
-.memory-caption {
-    font-family: var(--font-hand);
-    font-size: 1.6rem;
-    color: var(--text-main);
-}
+    // Render Memories
+    const memoriesContainer = document.getElementById('memories-container');
+    CONFIG.memories.forEach((mem, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.innerHTML = `
+            <div class="memory-image-container">
+                <img src="${mem.image}" alt="Memory ${index+1}" class="memory-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="memory-placeholder" style="display:none;">
+                    <span>📸</span>
+                </div>
+            </div>
+            <p class="memory-caption">${mem.caption}</p>
+        `;
+        memoriesContainer.appendChild(card);
+    });
 
-/* Award Screen */
-.award-ribbon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 24px;
-}
-.award-signature {
-    margin-top: 32px;
-    font-family: var(--font-hand);
-    font-size: 2rem;
-    color: var(--primary);
-    text-align: right;
-    padding-top: 16px;
-    border-top: 1px dashed var(--primary-light);
-}
+    // Navigation Logic
+    let currentScreenId = 'screen-intro';
+    
+    function navigateTo(screenId) {
+        document.getElementById(currentScreenId).classList.remove('active');
+        document.getElementById(currentScreenId).style.display = 'none';
+        
+        const nextScreen = document.getElementById(screenId);
+        nextScreen.style.display = 'flex';
+        // Trigger reflow
+        void nextScreen.offsetWidth;
+        nextScreen.classList.add('active');
+        
+        currentScreenId = screenId;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
-/* Rakhi Screen */
-.rakhi-svg {
-    width: 200px;
-    height: 200px;
-    margin: 32px auto;
-    filter: drop-shadow(0 10px 15px rgba(232, 72, 85, 0.2));
-}
-
-/* Final Screen */
-#screen-final {
-    background-color: var(--primary);
-    color: white;
-}
-#screen-final h1, #screen-final h2, #screen-final p {
-    color: white;
-}
-#screen-final .handwritten {
-    color: #FFD1D6;
-    font-size: 3.5rem;
-}
-
-/* Confetti Container */
-#confetti-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    .screen { transition: none; animation: none; }
-    .screen.active { animation: none; opacity: 1; transform: none; }
-    .svg-container { animation: none; }
-}
-
-@media (min-width: 481px) {
-    body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f0e9e1;
+        if (screenId === 'screen-letter') {
+            setTimeout(() => {
+                document.getElementById('letter-text').classList.add('revealed');
+            }, 500);
+        }
     }
-    #app {
-        border-radius: 40px;
-        height: 90vh;
-        overflow-y: auto;
-        margin: 5vh 0;
-        border: 8px solid white;
+
+    // No Button Logic
+    const btnNo = document.getElementById('btn-no');
+    const btnYes = document.getElementById('btn-yes');
+    let noClickCount = 0;
+
+    btnNo.addEventListener('click', () => {
+        if (noClickCount < CONFIG.noButtonResponses.length) {
+            btnNo.innerText = CONFIG.noButtonResponses[noClickCount];
+        } else {
+            btnNo.innerText = CONFIG.noButtonResponses[CONFIG.noButtonResponses.length - 1];
+        }
+        
+        noClickCount++;
+        
+        // Make YES button larger
+        const currentScale = 1 + (noClickCount * 0.1);
+        btnYes.style.transform = `scale(${currentScale})`;
+        
+        // Randomly move NO button slightly
+        const randomX = (Math.random() - 0.5) * 50;
+        const randomY = (Math.random() - 0.5) * 50;
+        btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    });
+
+    // Yes Button Logic
+    btnYes.addEventListener('click', () => {
+        fireConfetti();
+        playAudio();
+        navigateTo('screen-letter');
+    });
+
+    // Next Buttons
+    document.querySelectorAll('.btn-next').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const nextScreen = e.target.getAttribute('data-next');
+            if (nextScreen) navigateTo(nextScreen);
+        });
+    });
+
+    // Audio Logic
+    const audio = document.getElementById('bg-music');
+    const musicControl = document.getElementById('music-control');
+    let isPlaying = false;
+
+    // Check if audio exists
+    fetch('assets/music.mp3', { method: 'HEAD' })
+        .then(res => {
+            if (res.ok) {
+                musicControl.classList.remove('hidden');
+                audio.src = 'assets/music.mp3';
+            }
+        })
+        .catch(() => {
+            // Audio missing, keep hidden
+        });
+
+    function playAudio() {
+        if (!isPlaying && audio.src) {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicControl.classList.add('music-playing');
+            }).catch(e => console.log("Audio autoplay prevented by browser"));
+        }
     }
-}
+
+    musicControl.addEventListener('click', () => {
+        if (isPlaying) {
+            audio.pause();
+            musicControl.classList.remove('music-playing');
+        } else {
+            audio.play();
+            musicControl.classList.add('music-playing');
+        }
+        isPlaying = !isPlaying;
+    });
+
+    // Simple Confetti Generator
+    function fireConfetti() {
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pieces = [];
+        const colors = ['#E84855', '#FF8A95', '#FFD1D6', '#FFFFFF'];
+
+        for (let i = 0; i < 100; i++) {
+            pieces.push({
+                x: canvas.width / 2,
+                y: canvas.height / 2 + 100,
+                vx: (Math.random() - 0.5) * 20,
+                vy: (Math.random() - 1) * 20 - 5,
+                size: Math.random() * 10 + 5,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 10
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let active = false;
+            
+            pieces.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.5; // gravity
+                p.rotation += p.rotationSpeed;
+                
+                if (p.y < canvas.height) active = true;
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+                ctx.restore();
+            });
+
+            if (active) {
+                requestAnimationFrame(animate);
+            } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+        animate();
+    }
+});
