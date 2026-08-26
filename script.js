@@ -1,73 +1,97 @@
 // ==================================================
 // 1. CONFIGURATION SECTION
 // ==================================================
-// Edit all the text, names, and images here!
+// Edit all the personal text here.
+// DO NOT worry about photos or music right now - they are optional!
+// If an image path is empty (""), a beautiful placeholder will automatically appear.
 
 const CONFIG = {
     // Names
-    sisterName: "Sister",
-    brotherName: "Your Brother",
+    sisterName: "Didi",
+    brotherName: "Papa",
 
-    // Screen 1: Intro
-    introHeading: "Hey Sister...",
-    introSub: "I made something for you.",
-    introQuestion: "Do you wanna see it?",
-    yesButtonText: "YES ❤️",
-    noButtonText: "NO 😏",
-    noButtonResponses: [
-        "Nope 😭",
-        "Are you sure?",
-        "Try again 😂",
-        "Nice try 😭",
-        "You can't escape!"
-    ],
-
-    // Screen 2: Main Letter
-    letterHeading: "Happy Raksha Bandhan ❤️",
-    letterText: `Life would be a little more boring without you.
-We may fight, annoy each other and tease each other,
-but you're genuinely one of the people I will always be grateful for.
-
-This little website is just a small reminder
-that you're special to me.
-
-Happy Raksha Bandhan!`,
-
-    // Screen 3: Memories
-    memoriesHeading: "Our Little Memories 📸",
-    // To use real photos, change "" to "assets/memory1.jpg" etc.
-    memories: [
+    // Section 1: Intro
+    introMessage1: "Papa made something for you.",
+    introMessage2: "Something small.\nFor a bond that's never been small.",
+    
+    // Section 2: Little Things
+    littleThings: [
         {
-            image: "", 
-            caption: "One of those random memories ❤️"
+            title: "Childhood",
+            text: "Remember how we used to fight over the smallest things?\nAnd somehow, five minutes later, everything was normal again."
         },
         {
-            image: "",
-            caption: "Always causing chaos 😂"
+            title: "Family",
+            text: "We may not always say it,\nbut family feels different when you're there."
         },
         {
-            image: "",
-            caption: "Best memories are the unplanned ones."
+            title: "Support",
+            text: "Through every up and down, you've always been a constant."
+        },
+        {
+            title: "Laughter",
+            text: "The kind of laughter that only siblings understand."
         }
     ],
 
-    // Screen 4: Award
-    awardTitle: "OFFICIAL SISTER AWARD",
-    awardSubtitle: "Awarded to",
-    awardReason: "For being an amazing sister,\nprofessional annoyance,\nand a permanent part of my life.",
+    // Section 3: Memories
+    // To add real photos, change "" to "assets/memory1.jpg"
+    memories: [
+        {
+            title: "Childhood",
+            image: "", 
+            caption: "Where it all started."
+        },
+        {
+            title: "Growing Up",
+            image: "",
+            caption: "Years passed, but some things never change."
+        },
+        {
+            title: "Family Moments",
+            image: "",
+            caption: "The moments that matter most."
+        },
+        {
+            title: "Today",
+            image: "",
+            caption: "Still the same bond."
+        }
+    ],
 
-    // Screen 5: Rakhi Reveal
-    rakhiText1: "A Rakhi isn't just a thread...",
-    rakhiText2: "It's a reminder that no matter how far life takes us,\nI'll always have your back.",
-    rakhiButtonText: "One More Thing →",
+    // Section 4: Letter
+    letter: `Didi,
 
-    // Screen 6: Final
-    finalHeading: "One last thing...",
-    finalSub: "Thank you for being my sister ❤️",
-    finalText: "No matter how much we grow up,\nI'll always be your brother first.\n\nHappy Raksha Bandhan ❤️",
-    finalSignature: "Made with ❤️ by your brother",
+We don't always say everything we feel.
 
-    // Music
+Sometimes life gets busy.
+Sometimes we fight.
+Sometimes we simply move on to the next day.
+
+But today is a good excuse to stop for a moment.
+
+Thank you for being a part of so many memories,
+for all the laughter,
+the arguments,
+the little moments,
+and everything in between.
+
+No matter how much time passes,
+you will always be my sister,
+and that will always mean something special to me.
+
+Happy Raksha Bandhan ❤️`,
+
+    // Section 5: Tease
+    teaseText1: "Okay, enough emotions.",
+    teaseText2: "You're still annoying.",
+    teaseText3: "Luckily, you're my sister.\nSo I guess I'm stuck with you. 😂❤️",
+
+    // Section 6: Final
+    finalText1: "No matter where life takes us...",
+    finalText2: "...some bonds never change.",
+    
+    // Music (Optional)
     // To add music, change "" to "assets/music.mp3"
     musicFile: ""
 };
@@ -77,112 +101,138 @@ Happy Raksha Bandhan!`,
 // ==================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Inject Config Data
-    document.getElementById('intro-heading').innerText = CONFIG.introHeading.replace("Sister", CONFIG.sisterName);
-    document.getElementById('intro-sub').innerText = CONFIG.introSub;
-    document.getElementById('intro-question').innerText = CONFIG.introQuestion;
-    document.getElementById('btn-yes').innerText = CONFIG.yesButtonText;
-    document.getElementById('btn-no').innerText = CONFIG.noButtonText;
-
-    document.getElementById('letter-heading').innerText = CONFIG.letterHeading;
-    document.getElementById('letter-text').innerText = CONFIG.letterText;
-
-    document.getElementById('memories-heading').innerText = CONFIG.memoriesHeading;
     
-    document.getElementById('award-title').innerText = CONFIG.awardTitle;
-    document.getElementById('award-subtitle').innerText = `${CONFIG.awardSubtitle} ${CONFIG.sisterName}`;
-    document.getElementById('award-reason').innerText = CONFIG.awardReason;
-    document.getElementById('award-signature').innerText = CONFIG.brotherName;
+    // Setup UI Text
+    document.getElementById('intro-sister').innerText = `${CONFIG.sisterName}...`;
+    document.getElementById('intro-msg-1').innerText = CONFIG.introMessage1;
+    document.getElementById('intro-msg-2').innerText = CONFIG.introMessage2;
+    
+    document.getElementById('letter-content').innerText = CONFIG.letter;
+    
+    document.getElementById('tease-1').innerText = CONFIG.teaseText1;
+    document.getElementById('tease-2').innerText = CONFIG.teaseText2;
+    document.getElementById('tease-3').innerText = CONFIG.teaseText3;
+    
+    document.getElementById('final-sister').innerText = `Happy Raksha Bandhan, ${CONFIG.sisterName} ❤️`;
+    document.getElementById('final-brother').innerText = `With love,\nYour Brother, ${CONFIG.brotherName}`;
+    document.getElementById('final-text-1').innerText = CONFIG.finalText1;
+    document.getElementById('final-text-2').innerText = CONFIG.finalText2;
 
-    document.getElementById('rakhi-text-1').innerText = CONFIG.rakhiText1;
-    document.getElementById('rakhi-text-2').innerText = CONFIG.rakhiText2;
-    document.getElementById('btn-rakhi-next').innerText = CONFIG.rakhiButtonText;
-
-    document.getElementById('final-heading').innerText = CONFIG.finalHeading;
-    document.getElementById('final-sub').innerText = CONFIG.finalSub;
-    document.getElementById('final-text').innerText = CONFIG.finalText;
-    document.getElementById('final-signature').innerText = CONFIG.finalSignature;
+    // Render Little Things
+    const littleThingsContainer = document.getElementById('little-things-container');
+    CONFIG.littleThings.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'little-card';
+        card.innerHTML = `
+            <h3 class="little-card-title">${item.title}</h3>
+            <div class="little-card-content">${item.text}</div>
+        `;
+        card.addEventListener('click', () => {
+            card.classList.toggle('opened');
+        });
+        littleThingsContainer.appendChild(card);
+    });
 
     // Render Memories Safely (No 404 console errors)
-    const memoriesContainer = document.getElementById('memories-container');
+    const timelineContainer = document.getElementById('timeline-container');
     CONFIG.memories.forEach((mem, index) => {
         const card = document.createElement('div');
         card.className = 'memory-card';
         
+        // Beautiful SVG Placeholder
+        const svgPlaceholder = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+        </svg><span>Photo reserved for ${mem.title}</span>`;
+        
         let imageHTML = '';
         if (mem.image && mem.image.trim() !== "") {
-            // Include fallback onerror just in case the path is wrong
-            imageHTML = `<img src="${mem.image}" alt="Memory ${index+1}" class="memory-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                         <div class="memory-placeholder" style="display:none;"><span>📸</span></div>`;
+            // Include onerror fallback just in case path is wrong but specified
+            imageHTML = `<img src="${mem.image}" alt="${mem.title}" class="memory-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="memory-placeholder" style="display:none;">${svgPlaceholder}</div>`;
         } else {
-            // Render placeholder directly if no image path provided
-            imageHTML = `<div class="memory-placeholder"><span>📸</span></div>`;
+            imageHTML = `<div class="memory-placeholder">${svgPlaceholder}</div>`;
         }
 
         card.innerHTML = `
-            <div class="memory-image-container">
+            <div class="memory-title">${mem.title}</div>
+            <div class="memory-image-wrapper">
                 ${imageHTML}
             </div>
             <p class="memory-caption">${mem.caption}</p>
         `;
-        memoriesContainer.appendChild(card);
+        
+        card.addEventListener('click', () => {
+            card.classList.toggle('expanded');
+        });
+        
+        timelineContainer.appendChild(card);
     });
 
-    // Navigation Logic
+    // Navigation & Animations
     let currentScreenId = 'screen-intro';
     
     function navigateTo(screenId) {
-        document.getElementById(currentScreenId).classList.remove('active');
-        document.getElementById(currentScreenId).style.display = 'none';
+        const current = document.getElementById(currentScreenId);
+        current.style.opacity = '0';
         
-        const nextScreen = document.getElementById(screenId);
-        nextScreen.style.display = 'flex';
-        // Trigger reflow
-        void nextScreen.offsetWidth;
-        nextScreen.classList.add('active');
-        
-        currentScreenId = screenId;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+            current.classList.remove('active');
+            current.style.display = 'none';
+            
+            const next = document.getElementById(screenId);
+            next.style.display = 'flex';
+            // reflow
+            void next.offsetWidth;
+            next.classList.add('active');
+            
+            currentScreenId = screenId;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            triggerScreenAnimations(screenId);
+        }, 1000);
+    }
 
-        if (screenId === 'screen-letter') {
+    function triggerScreenAnimations(screenId) {
+        if (screenId === 'screen-intro') {
+            setTimeout(() => document.getElementById('intro-msg-1').classList.add('visible'), 1500);
+            setTimeout(() => document.getElementById('intro-msg-2').classList.add('visible'), 3500);
+            setTimeout(() => document.getElementById('btn-open').style.opacity = '1', 5500);
+        }
+        else if (screenId === 'screen-rakhi') {
             setTimeout(() => {
-                document.getElementById('letter-text').classList.add('revealed');
+                document.getElementById('rakhi-anim-container').classList.add('animate');
             }, 500);
+            setTimeout(() => {
+                document.getElementById('rakhi-text-1').classList.add('visible');
+            }, 3000);
+            setTimeout(() => {
+                document.getElementById('rakhi-text-2').classList.add('visible');
+            }, 5000);
+            setTimeout(() => {
+                document.getElementById('rakhi-text-3').classList.add('visible');
+            }, 7000);
+        }
+        else if (screenId === 'screen-tease') {
+            setTimeout(() => document.getElementById('tease-2').classList.add('visible'), 2000);
+            setTimeout(() => document.getElementById('tease-3').classList.add('visible'), 4000);
+        }
+        else if (screenId === 'screen-final') {
+            setTimeout(() => document.getElementById('final-text-1').classList.add('visible'), 2000);
+            setTimeout(() => document.getElementById('final-text-2').classList.add('visible'), 4500);
+            setTimeout(() => document.getElementById('final-sister').classList.add('visible'), 7000);
+            setTimeout(() => document.getElementById('final-brother').classList.add('visible'), 8500);
+            createParticles();
         }
     }
 
-    // No Button Logic
-    const btnNo = document.getElementById('btn-no');
-    const btnYes = document.getElementById('btn-yes');
-    let noClickCount = 0;
+    // Init first screen
+    document.getElementById('btn-open').style.opacity = '0';
+    document.getElementById('btn-open').style.transition = 'opacity 1s ease';
+    triggerScreenAnimations('screen-intro');
 
-    btnNo.addEventListener('click', () => {
-        if (noClickCount < CONFIG.noButtonResponses.length) {
-            btnNo.innerText = CONFIG.noButtonResponses[noClickCount];
-        } else {
-            btnNo.innerText = CONFIG.noButtonResponses[CONFIG.noButtonResponses.length - 1];
-        }
-        
-        noClickCount++;
-        
-        // Make YES button larger
-        const currentScale = 1 + (noClickCount * 0.1);
-        btnYes.style.transform = `scale(${currentScale})`;
-        
-        // Randomly move NO button slightly
-        const randomX = (Math.random() - 0.5) * 50;
-        const randomY = (Math.random() - 0.5) * 50;
-        btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
-    });
-
-    // Yes Button Logic
-    btnYes.addEventListener('click', () => {
-        fireConfetti();
-        playAudio();
-        navigateTo('screen-letter');
-    });
-
-    // Next Buttons
+    // Buttons
     document.querySelectorAll('.btn-next').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const nextScreen = e.target.getAttribute('data-next');
@@ -190,12 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Audio Logic Safely
+    // Audio Logic
     const audio = document.getElementById('bg-music');
     const musicControl = document.getElementById('music-control');
     let isPlaying = false;
 
-    // Only attempt to load audio if configured, avoiding 404 console errors
+    // Only attempt to load if configured
     if (CONFIG.musicFile && CONFIG.musicFile.trim() !== "") {
         musicControl.classList.remove('hidden');
         audio.src = CONFIG.musicFile;
@@ -221,55 +271,21 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaying = !isPlaying;
     });
 
-    // Simple Confetti Generator
-    function fireConfetti() {
-        const canvas = document.getElementById('confetti-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const pieces = [];
-        const colors = ['#E84855', '#FF8A95', '#FFD1D6', '#FFFFFF'];
-
-        for (let i = 0; i < 100; i++) {
-            pieces.push({
-                x: canvas.width / 2,
-                y: canvas.height / 2 + 100,
-                vx: (Math.random() - 0.5) * 20,
-                vy: (Math.random() - 1) * 20 - 5,
-                size: Math.random() * 10 + 5,
-                color: colors[Math.floor(Math.random() * colors.length)],
-                rotation: Math.random() * 360,
-                rotationSpeed: (Math.random() - 0.5) * 10
-            });
+    // Handle initial play on first interaction
+    document.getElementById('btn-open').addEventListener('click', playAudio);
+    
+    // Final screen particles
+    function createParticles() {
+        const container = document.getElementById('particles-container');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.width = Math.random() * 6 + 2 + 'px';
+            p.style.height = p.style.width;
+            p.style.animationDelay = Math.random() * 5 + 's';
+            p.style.animationDuration = Math.random() * 5 + 8 + 's';
+            container.appendChild(p);
         }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            let active = false;
-            
-            pieces.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vy += 0.5; // gravity
-                p.rotation += p.rotationSpeed;
-                
-                if (p.y < canvas.height) active = true;
-
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate(p.rotation * Math.PI / 180);
-                ctx.fillStyle = p.color;
-                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
-                ctx.restore();
-            });
-
-            if (active) {
-                requestAnimationFrame(animate);
-            } else {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-        animate();
     }
 });
