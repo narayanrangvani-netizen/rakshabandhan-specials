@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Happy Raksha Bandhan</title>
+    <title>रक्षाबंधन की शुभकामनाएं</title>
     
-    <!-- Elegant Fonts -->
+    <!-- Elegant Hindi Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Kalam:wght@400;700&family=Mukta:wght@400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
 </head>
@@ -26,100 +26,116 @@
 
         <!-- SCREEN 1: INTRO -->
         <section id="screen-intro" class="screen active">
-            <h1 id="intro-sister" class="handwritten" style="font-size: 3.5rem; margin-bottom: 40px;"></h1>
-            <p id="intro-msg-1" class="fade-text"></p>
-            <p id="intro-msg-2" class="fade-text" style="white-space: pre-wrap;"></p>
+            <h1 id="intro-title" class="fade-text handwritten" style="font-size: 3rem; margin-bottom: 40px;"></h1>
+            <p id="intro-msg-1" class="fade-text" style="white-space: pre-wrap; font-size: 1.4rem; font-family: var(--font-heading); color: var(--text-red);"></p>
             
-            <button id="btn-open" class="btn-next" data-next="screen-bond">Open your surprise &rarr;</button>
+            <div id="intro-buttons" class="button-group">
+                <button id="btn-yes" class="btn-primary"></button>
+                <button id="btn-no"></button>
+            </div>
         </section>
 
-        <!-- SCREEN 2: THE BOND -->
-        <section id="screen-bond" class="screen">
-            <h2 class="handwritten" style="font-size: 3rem; margin-bottom: 40px;">Some bonds don't need words.</h2>
-            <p style="white-space: pre-wrap; font-size: 1.25rem;">Years change.
-People grow.
-Life gets busy.
-
-But some relationships somehow remain exactly where they belong.</p>
-            <h3 class="handwritten" style="font-size: 2.5rem; margin-top: 20px;">Brother & Sister.</h3>
+        <!-- SCREEN 2: RELATIONSHIP -->
+        <section id="screen-relationship" class="screen">
+            <h2 class="handwritten" style="font-size: 3rem; margin-bottom: 30px;">भाई-बहन का रिश्ता...</h2>
             
-            <button class="btn-next" data-next="screen-little-things" style="margin-top: 50px;">Next &rarr;</button>
+            <p id="rel-text-1" class="fade-text" style="white-space: pre-wrap; font-size: 1.25rem; line-height: 1.8;">बचपन में छोटी-छोटी बातों पर लड़ना,
+एक-दूसरे को परेशान करना,
+फिर कुछ देर बाद ऐसे बात करना
+जैसे कुछ हुआ ही नहीं।
+
+शायद यही तो भाई-बहन का रिश्ता है।</p>
+            
+            <p id="rel-text-2" class="fade-text handwritten" style="font-size: 2rem; margin-top: 30px; color: var(--text-red);">समय बहुत बदल गया है,
+लेकिन ये रिश्ता आज भी वैसा ही है। ❤️</p>
+            
+            <button class="btn-next btn-primary" data-next="screen-interactive" style="margin-top: 50px;">आगे बढ़ें &rarr;</button>
         </section>
 
-        <!-- SCREEN 3: LITTLE THINGS -->
-        <section id="screen-little-things" class="screen">
-            <h2 class="handwritten" style="font-size: 3rem; margin-bottom: 10px;">Remember these?</h2>
-            <p style="font-size: 0.95rem; opacity: 0.7;">(Tap to open)</p>
+        <!-- SCREEN 3: INTERACTIVE -->
+        <section id="screen-interactive" class="screen">
+            <h2 class="handwritten" style="font-size: 3.2rem; margin-bottom: 10px;">याद है?</h2>
+            <p style="font-size: 1rem; opacity: 0.7;">(पढ़ने के लिए टैप करें)</p>
             
-            <div id="little-things-container" class="little-things-grid">
+            <div id="interactive-cards-container" class="memory-grid">
                 <!-- Cards injected via JS -->
             </div>
             
-            <button class="btn-next" data-next="screen-timeline">Continue &rarr;</button>
+            <button class="btn-next btn-primary" data-next="screen-timeline">आगे बढ़ें &rarr;</button>
         </section>
 
         <!-- SCREEN 4: TIMELINE -->
         <section id="screen-timeline" class="screen">
-            <h2 class="handwritten" style="font-size: 3.5rem;">Then &rarr; Now</h2>
-            <p style="font-size: 0.95rem; opacity: 0.7;">(Tap photo to expand)</p>
+            <h2 class="handwritten" style="font-size: 3.5rem;">तब से आज तक...</h2>
+            <p style="font-size: 1rem; opacity: 0.7;">(तस्वीर बड़ी करने के लिए टैप करें)</p>
             
             <div id="timeline-container" class="timeline-container">
                 <!-- Memories injected via JS -->
             </div>
             
-            <button class="btn-next" data-next="screen-rakhi">Next &rarr;</button>
+            <button class="btn-next btn-primary" data-next="screen-rakhi">आगे बढ़ें &rarr;</button>
         </section>
 
         <!-- SCREEN 5: THE RAKHI -->
         <section id="screen-rakhi" class="screen">
-            <div id="rakhi-anim-container" class="rakhi-container">
+            <div id="rakhi-anim-box" class="rakhi-anim-box">
                 <div class="rakhi-thread"></div>
                 <div class="rakhi-center">
-                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: #FFFDF8; z-index: 5;">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
+                    <div class="rakhi-inner">
+                        <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: var(--bg-cream); z-index: 5;">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
             
-            <p id="rakhi-text-1" class="fade-text" style="font-size: 1.4rem; margin-top: 20px;"></p>
-            <p id="rakhi-text-2" class="fade-text handwritten" style="font-size: 2.2rem;"></p>
-            <h2 id="rakhi-text-3" class="fade-text handwritten" style="font-size: 3rem; margin-top: 40px;">Happy Raksha Bandhan ❤️</h2>
+            <p id="rakhi-msg-1" class="fade-text" style="font-size: 1.5rem; margin-top: 20px; font-family: var(--font-heading);">राखी सिर्फ एक धागा नहीं है...</p>
+            <p id="rakhi-msg-2" class="fade-text handwritten" style="font-size: 2rem; white-space: pre-wrap; line-height: 1.5; margin-top: 20px;">ये उन यादों और रिश्तों की निशानी है,
+जो उम्र के साथ और भी मजबूत होते जाते हैं।</p>
+            <h2 id="rakhi-msg-3" class="fade-text handwritten" style="font-size: 3.2rem; margin-top: 40px; color: var(--text-maroon);">हैप्पी रक्षाबंधन ❤️</h2>
             
-            <button class="btn-next" data-next="screen-letter" style="margin-top: 60px;">Read Letter &rarr;</button>
+            <button class="btn-next btn-primary" data-next="screen-letter" style="margin-top: 60px;">संदेश पढ़ें &rarr;</button>
         </section>
 
         <!-- SCREEN 6: LETTER -->
         <section id="screen-letter" class="screen">
-            <h2 class="handwritten" style="font-size: 2.5rem; margin-bottom: 30px;">A few things I wanted to say...</h2>
+            <h2 class="handwritten" style="font-size: 2.8rem; margin-bottom: 20px;">एक छोटी सी बात...</h2>
             
             <div class="letter-paper">
                 <div id="letter-content" class="letter-content"></div>
             </div>
             
-            <button class="btn-next" data-next="screen-tease" style="margin-top: 40px;">Next &rarr;</button>
+            <button class="btn-next btn-primary" data-next="screen-tease" style="margin-top: 40px;">आगे बढ़ें &rarr;</button>
         </section>
 
         <!-- SCREEN 7: TEASE -->
         <section id="screen-tease" class="screen">
-            <h2 id="tease-1" class="handwritten" style="font-size: 3.5rem; margin-bottom: 40px;"></h2>
-            <p id="tease-2" class="fade-text" style="font-size: 1.4rem;"></p>
-            <p id="tease-3" class="fade-text" style="white-space: pre-wrap; font-size: 1.25rem; margin-top: 20px; font-weight: 500;"></p>
+            <h2 class="handwritten" style="font-size: 3.5rem; margin-bottom: 30px;">और हाँ...</h2>
+            <p id="tease-msg-1" class="fade-text" style="font-size: 1.4rem; white-space: pre-wrap;">छोटी बहन हो,
+इसलिए थोड़ी नखरेबाज़ी तो चलेगी। 😄</p>
+            <p id="tease-msg-2" class="fade-text handwritten" style="font-size: 2.2rem; margin-top: 20px; color: var(--text-red);">लेकिन ज्यादा नहीं। 😂</p>
             
-            <button class="btn-next" data-next="screen-final" style="margin-top: 60px;">One last thing &rarr;</button>
+            <button class="btn-next btn-primary" data-next="screen-final" style="margin-top: 60px;">अंत में &rarr;</button>
         </section>
 
         <!-- SCREEN 8: FINAL -->
         <section id="screen-final" class="screen">
-            <div id="particles-container" class="particles"></div>
+            <div id="particles-container" class="final-particles"></div>
             
-            <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 60px; position: relative; z-index: 2;">One last thing...</p>
+            <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px; position: relative; z-index: 2;">एक आखिरी बात...</p>
             
-            <p id="final-text-1" class="fade-text" style="font-size: 1.5rem;"></p>
-            <p id="final-text-2" class="fade-text" style="font-size: 1.5rem; margin-bottom: 60px;"></p>
+            <p id="final-msg-1" class="fade-text" style="font-size: 1.4rem; white-space: pre-wrap; line-height: 1.8;">समय बदलता रहता है,
+उम्र बढ़ती रहती है,
+जिंदगी अपनी रफ्तार से चलती रहती है...</p>
+
+            <p id="final-msg-2" class="fade-text handwritten" style="font-size: 2.2rem; margin: 30px 0; color: var(--accent-gold); white-space: pre-wrap;">लेकिन भाई-बहन का अपनापन
+कहीं नहीं जाता।</p>
             
-            <h2 id="final-sister" class="fade-text handwritten" style="font-size: 3.5rem; margin-bottom: 60px;"></h2>
+            <h2 id="final-msg-3" class="fade-text handwritten" style="font-size: 3rem; margin-bottom: 20px;">रक्षाबंधन की ढेर सारी शुभकामनाएं, छोटी। ❤️</h2>
             
-            <div id="final-brother" class="fade-text handwritten" style="font-size: 2.2rem; white-space: pre-wrap;"></div>
+            <p id="final-msg-4" class="fade-text" style="font-size: 1.4rem;">हमेशा खुश रहो।</p>
+            
+            <div id="final-brother" class="fade-text handwritten" style="font-size: 2.5rem; margin-top: 50px;">तुम्हारा भाई</div>
         </section>
     </div>
 
