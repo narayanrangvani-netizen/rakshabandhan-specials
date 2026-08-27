@@ -232,10 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
             setTimeout(() => {
                 document.getElementById('rakhi-msg-3').classList.add('visible');
-                // Reveal music control here
-                if (CONFIG.musicFile && CONFIG.musicFile.trim() !== "") {
-                    document.getElementById('music-control').classList.remove('hidden');
-                }
             }, 7500);
         }
         else if (screenId === 'screen-tease') {
@@ -257,34 +253,40 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('intro-buttons').style.transition = 'opacity 1s ease';
     triggerScreenAnimations('screen-intro');
 
-    // Audio Logic
+    // Audio Logic (Continuous Background Autoplay)
     const audio = document.getElementById('bg-music');
-    const musicControl = document.getElementById('music-control');
     let isPlaying = false;
 
-    // Set audio source if available, but keep hidden initially (handled in HTML)
     if (CONFIG.musicFile && CONFIG.musicFile.trim() !== "") {
         audio.src = CONFIG.musicFile;
-    }
+        audio.volume = 0.4;
+        audio.currentTime = 0;
+        
+        // Attempt immediate playback
+        const attemptPlay = () => {
+            if (!isPlaying && audio.src) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    // Remove global listeners once playing
+                    document.removeEventListener('click', attemptPlay);
+                    document.removeEventListener('touchstart', attemptPlay);
+                    document.removeEventListener('scroll', attemptPlay);
+                    document.removeEventListener('keydown', attemptPlay);
+                }).catch(e => {
+                    // Browser blocked autoplay, wait for next interaction
+                });
+            }
+        };
 
-    function playAudio() {
-        if (!isPlaying && audio.src && CONFIG.musicFile.trim() !== "") {
-            audio.play().then(() => {
-                isPlaying = true;
-                musicControl.classList.add('music-playing');
-            }).catch(e => console.log("Audio play prevented by browser restrictions"));
-        }
-    }
+        // Try immediately
+        attemptPlay();
 
-    musicControl.addEventListener('click', () => {
-        if (isPlaying) {
-            audio.pause();
-            musicControl.classList.remove('music-playing');
-            isPlaying = false;
-        } else {
-            playAudio();
-        }
-    });
+        // Fallback: Bind to any user interaction to start audio
+        document.addEventListener('click', attemptPlay);
+        document.addEventListener('touchstart', attemptPlay);
+        document.addEventListener('scroll', attemptPlay);
+        document.addEventListener('keydown', attemptPlay);
+    }
 
     // Final Screen Particles
     function createParticles() {
