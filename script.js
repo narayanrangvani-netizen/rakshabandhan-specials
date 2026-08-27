@@ -30,7 +30,7 @@ const CONFIG = {
         },
         {
             title: "त्योहार...",
-            text: "त्योहार चाहे कोई भी हो,\nपरिवार साथ हो মোহ खुशी अपने आप बढ़ जाती थी।"
+            text: "त्योहार चाहे कोई भी हो,\nपरिवार साथ हो तो खुशी अपने आप बढ़ जाती थी।"
         },
         {
             title: "आज...",
@@ -83,8 +83,8 @@ const CONFIG = {
 
 रक्षाबंधन की बहुत-बहुत शुभकामनाएं। ❤️`,
 
-    // Music Configuration updated to absolute simple path
-    musicFile: "assets/music.mp3"
+    // Music Configuration updated to the exact real filename
+    musicFile: "assets/WhatsApp Audio 2026-08-27 at 11.55.58 PM.mpeg"
 };
 
 // ==================================================
