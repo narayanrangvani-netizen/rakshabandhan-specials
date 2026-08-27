@@ -39,27 +39,21 @@ const CONFIG = {
     ],
 
     // Section 3: Memories
-    // To add real photos, change "" to "assets/memory1.jpg"
     memories: [
         {
-            title: "बचपन",
-            image: "", 
-            caption: "पुराने दिन, प्यारी यादें ❤️"
+            title: "एक पुरानी याद",
+            image: "assets/WhatsApp Image 2026-08-27 at 11.24.57 PM.jpeg", 
+            caption: "कुछ पुरानी यादें ❤️"
         },
         {
-            title: "बड़े होते हुए",
-            image: "",
-            caption: "वो समय... जब जिंदगी थोड़ी आसान थी।"
+            title: "कुछ खूबसूरत पल",
+            image: "assets/WhatsApp Image 2026-08-27 at 11.25.28 PM.jpeg",
+            caption: "कुछ पल जो हमेशा अपने लगते हैं।"
         },
         {
-            title: "परिवार",
-            image: "",
-            caption: "परिवार की यादें हमेशा खास रहती हैं।"
-        },
-        {
-            title: "आज",
-            image: "",
-            caption: "कुछ तस्वीरें सिर्फ तस्वीरें नहीं होतीं।"
+            title: "आज भी खास",
+            image: "assets/WhatsApp Image 2026-08-27 at 11.26.06 PM.jpeg",
+            caption: "आज भी उतने ही खास।"
         }
     ],
 
@@ -90,8 +84,7 @@ const CONFIG = {
 रक्षाबंधन की बहुत-बहुत शुभकामनाएं। ❤️`,
 
     // Music (Optional)
-    // To add music, change "" to "assets/music.mp3"
-    musicFile: ""
+    musicFile: "assets/Tenu-Sang-Rakhna-Jigra-Alia-Bhatt-Vedang-Raina-Arijit-Singh-Achint-Anumita-Varun.mp3"
 };
 
 // ==================================================
@@ -205,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnYes.addEventListener('click', () => {
-        playAudio();
         navigateTo('screen-relationship');
     });
 
@@ -240,6 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
             setTimeout(() => {
                 document.getElementById('rakhi-msg-3').classList.add('visible');
+                // Reveal music control here
+                if (CONFIG.musicFile && CONFIG.musicFile.trim() !== "") {
+                    document.getElementById('music-control').classList.remove('hidden');
+                }
             }, 7500);
         }
         else if (screenId === 'screen-tease') {
@@ -266,8 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicControl = document.getElementById('music-control');
     let isPlaying = false;
 
+    // Set audio source if available, but keep hidden initially (handled in HTML)
     if (CONFIG.musicFile && CONFIG.musicFile.trim() !== "") {
-        musicControl.classList.remove('hidden');
         audio.src = CONFIG.musicFile;
     }
 
@@ -276,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
             audio.play().then(() => {
                 isPlaying = true;
                 musicControl.classList.add('music-playing');
-            }).catch(e => console.log("Audio autoplay prevented"));
+            }).catch(e => console.log("Audio play prevented by browser restrictions"));
         }
     }
 
@@ -284,11 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isPlaying) {
             audio.pause();
             musicControl.classList.remove('music-playing');
+            isPlaying = false;
         } else {
-            audio.play();
-            musicControl.classList.add('music-playing');
+            playAudio();
         }
-        isPlaying = !isPlaying;
     });
 
     // Final Screen Particles
