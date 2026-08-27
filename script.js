@@ -83,7 +83,7 @@ const CONFIG = {
 
 रक्षाबंधन की बहुत-बहुत शुभकामनाएं। ❤️`,
 
-    // Music (Optional)
+    // Music Configuration is now handled natively in index.html for smooth continuous autoplay
     musicFile: "assets/Tenu-Sang-Rakhna-Jigra-Alia-Bhatt-Vedang-Raina-Arijit-Singh-Achint-Anumita-Varun.mp3"
 };
 
@@ -257,24 +257,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('bg-music');
     let isPlaying = false;
 
-    if (CONFIG.musicFile && CONFIG.musicFile.trim() !== "") {
-        audio.src = CONFIG.musicFile;
+    if (audio) {
         audio.volume = 0.4;
-        audio.currentTime = 0;
         
         // Attempt immediate playback
         const attemptPlay = () => {
-            if (!isPlaying && audio.src) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    // Remove global listeners once playing
-                    document.removeEventListener('click', attemptPlay);
-                    document.removeEventListener('touchstart', attemptPlay);
-                    document.removeEventListener('scroll', attemptPlay);
-                    document.removeEventListener('keydown', attemptPlay);
-                }).catch(e => {
-                    // Browser blocked autoplay, wait for next interaction
-                });
+            if (!isPlaying) {
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        isPlaying = true;
+                        // Remove global listeners once playing
+                        document.removeEventListener('click', attemptPlay);
+                        document.removeEventListener('touchstart', attemptPlay);
+                        document.removeEventListener('scroll', attemptPlay);
+                        document.removeEventListener('keydown', attemptPlay);
+                    }).catch(e => {
+                        // Browser blocked autoplay, wait for next interaction
+                    });
+                }
             }
         };
 
